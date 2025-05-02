@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to My Personal Page</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      background: url('https://www.transparenttextures.com/patterns/stardust.png'), black;
+      color: rgb(255, 255, 255);
+      font-family: "Courier New", monospace;
+    }
+
+    h1 {
+      color: cyan;
+      text-align: center;
+      text-shadow: 1px 1px 2px #0ff;
+    }
+
+    .main {
+      width: 80%;
+      margin: 0 auto;
+      border: 2px dashed lime;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    a {
+      color: yellow;
+      text-decoration: underline;
+    }
+
+    .blink {
+      animation: blink 1s step-start infinite;
+    }
+
+    .crazy-text {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .agreement-form {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .checkbox-container {
+      margin-bottom: 15px;
+    }
+
+    .checkbox-container label {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .ok-button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-family: "Courier New", monospace;
+    }
+
+    .ok-button:hover {
+      background-color: #cc0000;
+    }
+
+    .underlined {
+      text-decoration: underline;
+    }
+
+    .red-underlined {
+      color: #ff0000;
+      text-decoration: underline;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1><marquee scrollamount="10">НУ ПРИВЕТ, ЛЮБОПЫТНОЕ ХУЙЛО, ВЫВОВАЧИВАЙ СВОИ КИШКИ И УБЕРИ ХАВКУ ПОДАЛЬШЕ. *А ЛУЧШЕ ВСЕГО ЗАХВАТИ РВОТНЫЙ ПАКЕТИК*</marquee></h1>
+
+  <div class="main">
+    <p><b>Одно я тебе скажу, зря ты сюда зашел.</b> Автор данной страницы является <span class="blink crazy-text">НЕВМЕНЯЕМЫМ</span> и <span class="blink crazy-text">КОНЧЕННЫМ</span> человеком. Публикации и истории из раздела "мой депрессивный дневничок" находятся в <a href="https://t.me/iaysisdead" target="_blank">Telegram</a>.</p>
+    <img src="https://media.giphy.com/media/jJccBaBcpYEfHy9e4p/giphy.gif" alt="Skull" style="width: 200px; height: auto;" />
+    
+    <hr />
+    <div class="agreement-form">
+      <div class="checkbox-container">
+        <input type="checkbox" id="agreement" name="agreement">
+        <label for="agreement">Я тупой долбоёб, подтверждаю, что мне исполнилось 0 лет, у меня не всё в порядке с мозгами, и я готов пройти далее. К контенту который мне предстоит лицезреть, <span class="underlined">претензий не имею</span>, и <span class="red-underlined">своё липовое мнение я никому не буду генерировать/высказывать</span>.</label>
+      </div>
+      <button onclick="checkAgreement()" class="ok-button">OK</button>
+    </div>
+    <p id="error-message" style="color: red; display: none;">Ты в глаза долбишься? Соглашение принимаешь или идёшь нахуй.</p>
+  </div>
+
+  <script>
+    function checkAgreement() {
+      const checkbox = document.getElementById('agreement');
+      const errorMessage = document.getElementById('error-message');
+      
+      if (!checkbox.checked) {
+        errorMessage.style.display = 'block';
+        return;
+      }
+      
+      errorMessage.style.display = 'none';
+      window.location.href = 'main.html';
+    }
+  </script>
+</body>
+</html>
