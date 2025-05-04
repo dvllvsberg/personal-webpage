@@ -803,17 +803,7 @@ document.addEventListener('DOMContentLoaded', () => {
             redirectMessage.classList.add('show');
             
             setTimeout(() => {
-              window.location.href = 'agreement.html';
-              // Получаем базовый путь репозитория
-              const basePath = window.location.pathname.includes('/personal-webpage') 
-                ? '/personal-webpage/' 
-                : '/';
-              
-              // Если мы уже на странице index.html, переходим к agreement.html
-              if (window.location.pathname.endsWith('index.html') || 
-                  window.location.pathname.endsWith('/personal-webpage/')) {
-                window.location.href = basePath + 'agreement.html';
-              }
+              window.location.replace('https://dvllvsberg.github.io/personal-webpage/agreement.html');
             }, 1000);
           }, 300);
         }, 300);
