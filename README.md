@@ -65,5 +65,5 @@ MIT License - см. файл [LICENSE](LICENSE) для подробностей
 ---
 
 <div align="center">
-  <sub>Built with 💀 by IAYSISDEAD</sub>
+  <sub>Built with 💀 by BAREL'EF</sub>
 </div>
