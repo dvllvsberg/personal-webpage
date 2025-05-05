@@ -48,7 +48,7 @@ personal-webpage/
 
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/personal-webpage.git
+git clone https://github.com/dvllvsberg/personal-webpage.git
 ```
 
 2. Откройте `index.html` в вашем браузере
