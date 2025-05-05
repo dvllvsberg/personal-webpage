@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .console-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: #00ff00;
+      font-size: 14px;
+      text-align: left;
+      width: 400px;
+      z-index: 100;
+      font-family: 'Share Tech Mono', monospace;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border: 1px solid #00ff00;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+
+    .console-line {
+      margin: 0;
+      padding: 2px 0;
+      opacity: 0;
+      white-space: pre;
+      position: relative;
+      visibility: hidden;
+      border-right: 2px solid transparent;
+    }
+
+    .console-line.typing {
+      visibility: visible;
+      opacity: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      border-right: 2px solid #00ff00;
+      -webkit-animation: typing 0.05s steps(15, end) forwards, blink-caret 0.4s step-end infinite;
+      animation: typing 0.05s steps(15, end) forwards, blink-caret 0.4s step-end infinite;
+    }
+
+    .console-line.typing.fast-error {
+      -webkit-animation: typing 0.02s steps(10, end) forwards, blink-caret 0.4s step-end infinite;
+      animation: typing 0.02s steps(10, end) forwards, blink-caret 0.4s step-end infinite;
+    }
+
+    .console-line.typed {
+      visibility: visible;
+      opacity: 1;
+      width: 100%;
+      border-right: none;
+    }
+
+    .console-line.dots {
+      opacity: 0;
+      width: auto;
+      border-right: none;
+    }
+
+    .console-line.dots.stop-blink {
+      opacity: 1;
+    }
+
+    .console-line.final {
+      color: #ff0000;
+      text-shadow: 0 0 5px #ff0000;
+      font-weight: bold;
+    }
+
+    .console-line.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .console-line.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .final-dots {
+      opacity: 0;
+      animation: typing 0.5s steps(60, end) forwards;
+    }
+
+    .final-dots:nth-child(29) { animation-delay: 35s !important; }
+    .final-dots:nth-child(30) { animation-delay: 36s !important; }
+    .final-dots:nth-child(31) { animation-delay: 37s !important; }
+
+    .final-message {
+      opacity: 0;
+      animation: finalReveal 0.5s steps(60, end) forwards;
+      animation-delay: 38s !important;
+      visibility: hidden;
+    }
+
+    .final-message.visible {
+      visibility: visible;
+      animation: typing 0.5s steps(60, end) forwards !important;
+    }
+
+    @-webkit-keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @-webkit-keyframes finalReveal {
+      0% {
+        opacity: 0;
+        width: 0;
+      }
+      100% {
+        opacity: 1;
+        width: 100%;
+      }
+    }
+
+    @keyframes finalReveal {
+      0% {
+        opacity: 0;
+        width: 0;
+      }
+      100% {
+        opacity: 1;
+        width: 100%;
+      }
+    }
+
+    @-webkit-keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: inherit; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: inherit; }
+    }
+
+    .console-line.error.typing {
+      border-right-color: #ff0000;
+    }
+
+    .console-line.warning.typing {
+      border-right-color: #ffff00;
+    }
+
+    @keyframes blinkDots {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    /* Системные сообщения */
+    .console-line:nth-child(1) { animation-delay: 0.2s; }
+    .console-line:nth-child(2) { animation-delay: 0.4s; }
+    .console-line:nth-child(3) { animation-delay: 0.6s; }
+    .console-line:nth-child(4) { animation-delay: 0.8s; }
+    .console-line:nth-child(5) { animation-delay: 1.0s; }
+    .console-line:nth-child(6) { animation-delay: 1.2s; }
+    .console-line:nth-child(7) { animation-delay: 1.4s; }
+    .console-line:nth-child(8) { animation-delay: 1.6s; }
+    .console-line:nth-child(9) { animation-delay: 1.8s; }
+    .console-line:nth-child(10) { animation-delay: 2.0s; }
+    .console-line:nth-child(11) { animation-delay: 2.2s; }
+
+    /* DIE сообщения */
+    .console-line:nth-child(12) { animation-delay: 2.4s; }
+    .console-line:nth-child(13) { animation-delay: 2.6s; }
+    .console-line:nth-child(14) { animation-delay: 2.8s; }
+    .console-line:nth-child(15) { animation-delay: 3.0s; }
+
+    /* Точки и финальное сообщение */
+    .console-line:nth-child(16) { animation-delay: 3.2s; }
+    .console-line:nth-child(17) { animation-delay: 3.4s; }
+    .console-line:nth-child(18) { animation-delay: 3.6s; }
+    .console-line:nth-child(19) { animation-delay: 3.8s; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: #00ff00;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .warning {
+      color: #ffff00;
+      text-shadow: 0 0 5px #ffff00;
+    }
+
+    .error {
+      color: #ff0000;
+      text-shadow: 0 0 5px #ff0000;
+    }
+
+    .success {
+      color: #00ff00;
+    }
+
+    .skull-container {
+      position: relative;
+      animation: parallax 8s ease-in-out infinite;
+      filter: drop-shadow(0 0 3px rgba(255, 0, 0, 0.3));
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .glitch {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 0, 0, 0.1);
+      mix-blend-mode: screen;
+      opacity: 0;
+      animation: glitch 8s infinite;
+      pointer-events: none;
+    }
+
+    .glitch:nth-child(2) {
+      background: #0ff;
+      animation-delay: 0.1s;
+    }
+
+    .glitch:nth-child(3) {
+      background: #f0f;
+      animation-delay: 0.2s;
+    }
+
+    @keyframes glitch {
+      0%, 100% {
+        opacity: 0;
+        transform: translate(0);
+      }
+      5% {
+        opacity: 0.1;
+        transform: translate(-2px);
+      }
+      5.5% {
+        opacity: 0;
+        transform: translate(0);
+      }
+      45% {
+        opacity: 0;
+        transform: translate(0);
+      }
+      45.5% {
+        opacity: 0.1;
+        transform: translate(2px);
+      }
+      46% {
+        opacity: 0;
+        transform: translate(0);
+      }
+    }
+
+    @keyframes parallax {
+      0% { 
+        transform: 
+          rotateY(-8deg);
+      }
+      50% { 
+        transform: 
+          rotateY(8deg);
+      }
+      100% { 
+        transform: 
+          rotateY(-8deg);
+      }
+    }
+
+    pre {
+      color: red;
+      font-family: monospace;
+      font-size: 16px;
+      line-height: 1;
+      text-shadow: 
+        0 0 5px red,
+        0 0 8px red,
+        0 0 12px red;
+      animation: 
+        flicker 3s ease-in-out infinite;
+      margin: 0;
+      padding: 0;
+      white-space: pre;
+      letter-spacing: 0;
+      position: relative;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes flicker {
+      0%, 100% { 
+        opacity: 1;
+        text-shadow: 
+          0 0 5px red,
+          0 0 8px red,
+          0 0 12px red;
+      }
+      50% { 
+        opacity: 0.9;
+        text-shadow: 
+          0 0 6px red,
+          0 0 9px red,
+          0 0 13px red;
+      }
+    }
+
+    .scan-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 255, 0, 0.1) 50%,
+        transparent 100%
+      );
+      animation: scanline 6s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .danger-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        rgba(255, 0, 0, 0.1) 50%,
+        transparent 100%
+      );
+      animation: pulse 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+      100% { opacity: 0.3; }
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(
+        transparent,
+        rgba(255, 0, 0, 0.2) 50%,
+        transparent
+      );
+      pointer-events: none;
+      animation: scanline 6s linear infinite;
+      opacity: 0.7;
+      mix-blend-mode: overlay;
+    }
+
+    @keyframes scanline {
+      0% {
+        transform: translateY(-100vh);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+
+    /* Добавляем общий градиентный оверлей */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(
+        circle at center,
+        transparent,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+      pointer-events: none;
+    }
+
+    .critical {
+      color: #ff0000;
+      font-weight: bold;
+      text-shadow: 0 0 5px #ff0000;
+    }
+
+    .system {
+      color: #0088ff;
+    }
+
+    .progress {
+      color: #00ff88;
+    }
+
+    .highlight {
+      background: rgba(255, 255, 0, 0.2);
+      padding: 0 4px;
+    }
+
+    /* Добавляем прогресс-бар */
+    .progress-container {
+      position: relative;
+      width: 300px;
+      margin: 30px auto 0;
+      padding: 3px;
+      background: #000;
+      border: 1px solid #f00;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .progress-container.fade-out {
+      opacity: 0;
+    }
+
+    .progress-bar {
+      height: 15px;
+      width: 100%;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-green {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #00ff00;
+      -webkit-transform-origin: left;
+      transform-origin: left;
+      -webkit-transform: scaleX(0);
+      transform: scaleX(0);
+      -webkit-animation: greenProgress 3s linear forwards;
+      animation: greenProgress 3s linear forwards;
+    }
+
+    @-webkit-keyframes greenProgress {
+      0% {
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+      }
+      80% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes greenProgress {
+      0% {
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+      }
+      80% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+        opacity: 0;
+      }
+    }
+
+    .progress-segments {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background-image: -webkit-repeating-linear-gradient(
+        90deg,
+        #f00 0px,
+        #f00 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      background-image: repeating-linear-gradient(
+        90deg,
+        #f00 0px,
+        #f00 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      -webkit-animation: moveSegments 2.5s linear infinite,
+                glowBar 4s ease-in-out infinite,
+                appearSegments 0.5s linear 2.4s forwards;
+      animation: moveSegments 2.5s linear infinite,
+                glowBar 4s ease-in-out infinite,
+                appearSegments 0.5s linear 2.4s forwards;
+      opacity: 0;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    @-webkit-keyframes moveSegments {
+      0% {
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+      100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+      }
+    }
+
+    @keyframes moveSegments {
+      0% {
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+      100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+      }
+    }
+
+    @-webkit-keyframes glowBar {
+      0%, 100% {
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+      }
+      50% {
+        -webkit-filter: brightness(1.2);
+        filter: brightness(1.2);
+      }
+    }
+
+    @keyframes glowBar {
+      0%, 100% {
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+      }
+      50% {
+        -webkit-filter: brightness(1.2);
+        filter: brightness(1.2);
+      }
+    }
+
+    @-webkit-keyframes appearSegments {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes appearSegments {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .progress-text {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      color: #f00;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      text-shadow: 0 0 5px #f00;
+      mix-blend-mode: screen;
+      margin-top: 8px;
+    }
+
+    /* Добавляем анимацию прогресса */
+    .progress-container {
+      --progress: 0%;
+      animation: updateProgress 25s linear forwards;
+    }
+
+    @keyframes updateProgress {
+      0% {
+        --progress: 0%;
+      }
+      100% {
+        --progress: 100%;
+      }
+    }
+
+    .console-line.error {
+      color: #ff0000;
+      text-shadow: 0 0 5px #ff0000;
+    }
+
+    .console-line.warning {
+      color: #ffff00;
+      text-shadow: 0 0 5px #ffff00;
+    }
+
+    .redirect-message {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    .redirect-message.show {
+      opacity: 1;
+      visibility: visible;
+      -webkit-animation: typing 0.5s steps(60, end) forwards;
+      animation: typing 0.5s steps(60, end) forwards;
+    }
+  </style>
+</head>
+<body>
+<div class="danger-overlay"></div>
+<div class="scan-line"></div>
+<div class="console-container">
+  <div class="console-line">[INIT] Initializing system...</div>
+  <div class="console-line">[BOOT] Loading basic components.......OK</div>
+  <div class="console-line">[SYS] Checking data integrity: 0x7FF8E95A</div>
+  <div class="console-line warning">[WARN] Anomalous signatures detected in sector 7</div>
+  <div class="console-line">[SCAN] Initiating deep scan..........</div>
+  <div class="console-line warning">[WARN] Unrecognized object in memory: 0xDEADBEEF</div>
+  <div class="console-line error">[ERR] Decryption of object failed</div>
+  <div class="console-line">[SYS] Activating security protocols</div>
+  <div class="console-line error">[CRIT] WARNING! Potential threat detected!</div>
+  <div class="console-line">[>>>] Initializing quarantine protocol</div>
+  <div class="console-line error">[ERR] THERE IS NO ESCAPE!</div>
+  <div class="console-line error">[ERR] YOU CAN'T!</div>
+  <div class="console-line error">[ERR] SUFFER!</div>
+  <div class="console-line error">[ERR] FOOL!</div>
+  <div class="console-line error">[ERR] DIE!</div>
+  <div class="console-line error">[ERR] DIE!</div>
+  <div class="console-line error">[ERR] DIE!</div>
+  <div class="console-line error">[ERR] DIE!</div>
+  <div class="console-line">...</div>
+  <div class="console-line dots">...</div>
+  <div class="console-line dots">...</div>
+  <div class="console-line final error">[SYS] Initialization complete. WELCOME TO HELL!</div>
+</div>
+<div class="skull-container">
+  <div class="glitch"></div>
+  <div class="glitch"></div>
+  <div class="glitch"></div>
+  <pre>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣸⠀⣠⣄⡀⠀⣀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⢨⣿⣿⣿⣿⣿⠀⠀⢀⡰⠡⣾⣿⣿⡇⠰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣸⣿⣿⣿⣿⣿⣆⠘⣥⣄⠀⠘⠋⠉⣴⣶⠉⢉⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠛⡯⡿⢿⣿⣿⣿⣿⣦⣯⠉⢹⣿⡆⠀⠉⠉⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⡔⢸⣁⡇⢸⢸⣿⣿⣿⣿⣿⣿⠀⠀⠻⠿⠿⠷⠷⣿⣿⣿⣿⣿⣿⣿⡿⡛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⢣⣸⢸⢇⡏⣸⣿⣿⣿⣿⣿⣿⣿⠶⠤⠤⣄⠀⢀⣸⣿⣿⣿⣿⣿⣿⣿⣉⠲⢮⢿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⢿⣟⣿⣼⣿⣿⣿⣿⣿⣿⣿⠯⠭⠥⢦⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⢉⣿⠀⠈⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠉⡟⠚⡿⠿⣿⣿⣿⡿⣻⣿⠥⣤⣶⡶⢿⣭⣛⢿⣿⣿⣿⣿⣿⣿⣿⣷⣶⡏⠀⣆⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⢸⠀⢸⢀⡞⣷⣈⠻⢿⣶⣶⣶⣾⣷⣄⠀⣼⣷⣿⡿⣿⢧⡀⠀⣼⣿⣷⣄⠀⢸⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢠⡏⣸⣷⡘⠿⣷⣶⣤⣈⣉⣉⣉⣡⣴⣾⣄⠀⠹⣶⣭⣥⣿⢿⣿⣿⡇⢱⣾⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⢰⣾⣷⣿⡙⢿⣶⣤⣈⣉⣉⣉⣡⣴⣾⣄⠀⢹⣶⣭⣥⣿⢿⣿⣆⠈⢿⣇⣾⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣯⠳⣤⡉⠛⠻⠿⠿⠿⠿⠛⣡⣿⡀⠘⣮⣙⣛⣋⣼⣿⣿⣦⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡈⠛⠷⣶⣤⣤⣴⣶⠿⠛⣡⡇⠘⣮⡻⢿⣿⡿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⣀⣀⣤⣴⣾⣿⣿⣶⣿⣿⣷⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</pre>
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-green"></div>
+      <div class="progress-segments"></div>
+    </div>
+    <div class="progress-text">LOADING NIGHTMARE...</div>
+  </div>
+  <div class="redirect-message">DATA SUCCESSFULLY LOADED. REDIRECTING TO MAIN PAGE...</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lines = document.querySelectorAll('.console-line');
+  const lineDelay = 20;
+  const errorDelay = 15;
+  const fastErrorDelay = 10;
+  let dieMessageStarted = false;
+  
+  async function typeText(line, delay) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (dieMessageStarted && line.classList.contains('error')) {
+          line.classList.add('typing', 'fast-error');
+        } else {
+          line.classList.add('typing');
+        }
+        
+        setTimeout(() => {
+          line.classList.remove('typing', 'fast-error');
+          line.classList.add('typed');
+          resolve();
+        }, dieMessageStarted && line.classList.contains('error') ? 20 : line.classList.contains('error') ? 40 : 50);
+      }, delay);
+    });
+  }
+
+  async function animateConsole() {
+    let currentDelay = 0;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      
+      if (line.textContent.includes('[ERR] DIE!')) {
+        dieMessageStarted = true;
+      }
+      
+      if (line.classList.contains('dots')) {
+        continue;
+      }
+      
+      if (line.classList.contains('final')) {
+        continue;
+      }
+      
+      await typeText(line, currentDelay);
+      if (dieMessageStarted && line.classList.contains('error')) {
+        currentDelay += fastErrorDelay;
+      } else {
+        currentDelay += line.classList.contains('error') ? errorDelay : lineDelay;
+      }
+    }
+    
+    currentDelay += 300;
+    
+    const dots = document.querySelectorAll('.console-line.dots');
+    dots.forEach((dot, index) => {
+      setTimeout(() => {
+        dot.style.visibility = 'visible';
+        dot.style.opacity = '1';
+      }, currentDelay + index * 50);
+    });
+    
+    currentDelay += 300;
+    
+    const finalMessage = document.querySelector('.console-line.final');
+    setTimeout(() => {
+      dots.forEach(dot => dot.style.opacity = '1');
+      typeText(finalMessage, 0).then(() => {
+        setTimeout(() => {
+          const progressContainer = document.querySelector('.progress-container');
+          progressContainer.classList.add('fade-out');
+          
+          setTimeout(() => {
+            const redirectMessage = document.querySelector('.redirect-message');
+            redirectMessage.classList.add('show');
+            
+            setTimeout(() => {
+              window.location.replace('https://dvllvsberg.github.io/personal-webpage/agreement.html');
+            }, 1000);
+          }, 300);
+        }, 300);
+      });
+    }, currentDelay);
+  }
+
+  animateConsole();
+});
+
+// Функции для звуков (можно добавить реальные звуки позже)
+function playErrorSound() {
+  // Заглушка для звука ошибки
+}
+
+function playTypeSound() {
+  // Заглушка для звука печати
+}
+</script>
+</body>
+</html>

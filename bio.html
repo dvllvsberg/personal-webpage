@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Биография</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background: url('https://www.transparenttextures.com/patterns/stardust.png'), black;
+      color: rgb(255, 255, 255);
+      font-family: "Courier New", monospace;
+      padding-top: 70px;
+    }
+
+    /* Неоновые стили для навигации */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.95) !important;
+      border-bottom: 2px solid #ff0000;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    .navbar-brand {
+      color: #ff0000 !important;
+      font-weight: bold;
+      text-shadow: 0 0 5px #ff0000,
+                   0 0 10px #ff0000,
+                   0 0 20px #ff0000;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 2px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .navbar-brand::before {
+      content: "☠";
+      position: absolute;
+      left: 0;
+      animation: skullRotate 3s infinite linear;
+    }
+
+    .nav-link {
+      color: #ffffff !important;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 8px 15px;
+      margin: 0 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+
+    .nav-link::before {
+      content: "☠";
+      position: absolute;
+      left: -20px;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #ff0000 !important;
+      text-shadow: 0 0 5px #ff0000,
+                   0 0 10px #ff0000,
+                   0 0 20px #ff0000;
+    }
+
+    .nav-link:hover::before {
+      opacity: 1;
+      left: -15px;
+    }
+
+    .navbar-toggler {
+      border-color: #ff0000 !important;
+      box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 0, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    @keyframes skullRotate {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .active-link {
+      color: #ff0000 !important;
+      text-shadow: 0 0 5px #ff0000,
+                   0 0 10px #ff0000,
+                   0 0 20px #ff0000;
+      position: relative;
+    }
+
+    .active-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff0000;
+      box-shadow: 0 0 5px #ff0000,
+                  0 0 10px #ff0000;
+    }
+
+    @keyframes realityBreak {
+      0% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: hue-rotate(0deg) brightness(1);
+      }
+      25% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000,
+          0 0 40px #ff0000,
+          0 0 50px #ff0000;
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.1);
+        filter: hue-rotate(90deg) brightness(1.2);
+      }
+      50% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000,
+          0 0 40px #ff0000,
+          0 0 50px #ff0000,
+          0 0 60px #ff0000;
+        transform: perspective(1000px) rotateX(-5deg) rotateY(5deg) scale(0.9);
+        filter: hue-rotate(180deg) brightness(0.8);
+      }
+      75% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000,
+          0 0 40px #ff0000,
+          0 0 50px #ff0000;
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.1);
+        filter: hue-rotate(270deg) brightness(1.2);
+      }
+      100% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: hue-rotate(360deg) brightness(1);
+      }
+    }
+
+    .bio-title-large {
+      font-size: 3em;
+      color: #ff0000;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin: 20px 0;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      animation: realityBreak 4s infinite;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .bio-title-large::before,
+    .bio-title-large::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .bio-title-large::before {
+      animation: glitchTop 1s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+      transform: translate(-2px, -2px);
+      color: #0ff;
+    }
+
+    .bio-title-large::after {
+      animation: glitchBottom 1.5s infinite;
+      clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+      transform: translate(2px, 2px);
+      color: #f0f;
+    }
+
+    @keyframes glitchTop {
+      0%, 100% {
+        transform: translate(0);
+      }
+      33% {
+        transform: translate(-2px, 2px);
+      }
+      66% {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    @keyframes glitchBottom {
+      0%, 100% {
+        transform: translate(0);
+      }
+      33% {
+        transform: translate(2px, -2px);
+      }
+      66% {
+        transform: translate(-2px, 2px);
+      }
+    }
+
+    .bio-title-large:hover {
+      animation: realityBreak 2s infinite;
+    }
+
+    .bio-section {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #ff0000;
+      margin: 20px 0;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+
+    .bio-title {
+      color: #ff0000;
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      position: relative;
+      animation: bloodPulse 3s infinite;
+    }
+
+    .bio-title:hover {
+      animation: bloodPulse 1.5s infinite;
+    }
+
+    .bio-text {
+      color: #ffffff;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .bio-quote {
+      border-left: 3px solid #ff0000;
+      padding-left: 20px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #ff0000;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #ff0000;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+
+    .timeline-item {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .timeline-content {
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid #ff0000;
+      padding: 20px;
+      margin-left: 50%;
+      position: relative;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .timeline-content::before {
+      content: '☠';
+      position: absolute;
+      left: -30px;
+      color: #ff0000;
+      font-size: 20px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .timeline-date {
+      color: #ff0000;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .timeline-text {
+      color: #ffffff;
+    }
+
+    .skills-section {
+      margin-top: 40px;
+    }
+
+    .skill-category {
+      color: #ff0000;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .skill-item {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid #ff0000;
+      padding: 10px;
+      margin: 5px;
+      display: inline-block;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      background: rgba(255, 0, 0, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: rgb(66, 13, 13);
+      text-align: center;
+      text-shadow: 1px 1px 2px rgb(255, 0, 0);
+      margin-bottom: 30px;
+    }
+
+    .bio-header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #ff0000;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+
+    @keyframes realityBreak {
+      0% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: hue-rotate(0deg) brightness(1);
+      }
+      25% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000,
+          0 0 40px #ff0000,
+          0 0 50px #ff0000;
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.1);
+        filter: hue-rotate(90deg) brightness(1.2);
+      }
+      50% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000,
+          0 0 40px #ff0000,
+          0 0 50px #ff0000,
+          0 0 60px #ff0000;
+        transform: perspective(1000px) rotateX(-5deg) rotateY(5deg) scale(0.9);
+        filter: hue-rotate(180deg) brightness(0.8);
+      }
+      75% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000,
+          0 0 40px #ff0000,
+          0 0 50px #ff0000;
+        transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.1);
+        filter: hue-rotate(270deg) brightness(1.2);
+      }
+      100% {
+        text-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: hue-rotate(360deg) brightness(1);
+      }
+    }
+
+    .bio-title-large {
+      font-size: 3em;
+      color: #ff0000;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin: 20px 0;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      animation: realityBreak 4s infinite;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .bio-title-large::before,
+    .bio-title-large::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .bio-title-large::before {
+      animation: glitchTop 1s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+      transform: translate(-2px, -2px);
+      color: #0ff;
+    }
+
+    .bio-title-large::after {
+      animation: glitchBottom 1.5s infinite;
+      clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+      transform: translate(2px, 2px);
+      color: #f0f;
+    }
+
+    @keyframes glitchTop {
+      0%, 100% {
+        transform: translate(0);
+      }
+      33% {
+        transform: translate(-2px, 2px);
+      }
+      66% {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    @keyframes glitchBottom {
+      0%, 100% {
+        transform: translate(0);
+      }
+      33% {
+        transform: translate(2px, -2px);
+      }
+      66% {
+        transform: translate(-2px, 2px);
+      }
+    }
+
+    .bio-title-large:hover {
+      animation: realityBreak 2s infinite;
+    }
+
+    .bio-subtitle {
+      font-size: 1.2em;
+      color: #666;
+      text-align: center;
+      text-decoration: line-through;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .bio-intro {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-bottom: 30px;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .main-content-section {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #ff0000;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+
+    .bio-avatar {
+      width: 150px;
+      height: 150px;
+      border: 2px solid #ff0000;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+      object-fit: cover;
+    }
+
+    .bio-intro-text {
+      flex: 1;
+    }
+
+    .bio-name {
+      color: #ff0000;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .bio-description {
+      color: #666;
+      font-style: italic;
+      line-height: 1.6;
+      font-size: 0.9em;
+    }
+
+    .bio-divider {
+      width: 100%;
+      height: 2px;
+      margin: 20px 0;
+      background: linear-gradient(90deg, 
+        #ff0000 50%, 
+        transparent 50%
+      );
+      background-size: 20px 2px;
+      box-shadow: 
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+      animation: neonPulse 1.5s ease-in-out infinite;
+    }
+
+    .bio-divider::before {
+      display: none;
+    }
+
+    @keyframes neonPulse {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 
+          0 0 5px #ff0000,
+          0 0 10px #ff0000,
+          0 0 20px #ff0000;
+      }
+      50% {
+        opacity: 0.7;
+        box-shadow: 
+          0 0 10px #ff0000,
+          0 0 20px #ff0000,
+          0 0 30px #ff0000;
+      }
+    }
+
+    .bio-main-text {
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .bio-hate-title {
+      color: #ff0000;
+      margin: 20px 0;
+      font-size: 1.1em;
+    }
+
+    .bio-hate-list {
+      margin-top: 20px;
+      padding-left: 0;
+    }
+
+    .bio-hate-item {
+      color: #fff;
+      margin: 10px 0;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .bio-hate-item::before {
+      content: "☠";
+      position: absolute;
+      left: 0;
+      color: #ff0000;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .chinese-text {
+      font-size: 1.5em;
+      color: rgba(255, 0, 0, 0.3);
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+      animation: fadeInOut 2s infinite;
+      user-select: none;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+      100% { opacity: 0.3; }
+    }
+
+    .hate-section {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #ff0000;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигационное меню -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="main.html">IAYSISDEAD</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#darkNavbar" aria-controls="darkNavbar" aria-expanded="false" aria-label="Меню">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="darkNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="main.html">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="diary.html">Дневник</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="projects.html">Проекты</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active-link" href="bio.html">Биография</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contacts.html">Контакты</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="chinese-text">
+      屌你老母屌你老母屌你老母屌你老母屌你老母屌你老母屌你老母屌你老母屌你老母屌你老母
+    </div>
+
+    <div class="bio-header">
+      <div class="bio-title-large">Я ЛЮБЛЮ СРАТЬ КРОВЬЮ</div>
+      <div class="bio-subtitle">НЕМОЖКО ПАРАШНОЙ БИОГРАФИИ КОТОРУЮ ВСЁ РАВНО НИКТО НЕ ПРОЧИТАЕТ</div>
+    </div>
+
+    <div class="main-content-section">
+      <div class="bio-intro">
+        <img src="img/avatar.jpg" alt="Дэвид Далласберг" class="bio-avatar">
+        <div class="bio-intro-text">
+          <div class="bio-name">Дэвид Далласберг</div>
+          <div class="bio-description">
+            вип-казах но без кобальта и айкоса, актёр кино под названием "Жизнь - кал", амбассадор по плагиату 
+            royalty-free контента, ваш личный психолог без лицензии но с бокалом праги и винстоном с кнопкой, 
+            суицидник который не смог... 6 раз блять, вроде блоггер, вроде стример, а вроде долбоёб, кмс по инту, 
+            программист по неволе
+          </div>
+        </div>
+      </div>
+
+      <div class="bio-divider"></div>
+
+      <div class="bio-main-text">
+        Зовут меня Дэвид Далласберг. Мне уже за двадцатку, но ною я как пубертатная целка с женским максимализмом 
+        в жопе. По профессии вроде как и программист, а вроде как просто геймер-алкаш со стажем. Всё просто, моя 
+        учёба это ёбаная фикция, я нигде не работаю, а то что у меня в любой непонятной ситуации находятся 
+        деньги, лишь совпадение.
+      </div>
+
+      <div class="bio-hate-title">
+        Я ненавижу свою жизнь, потому что:
+      </div>
+
+      <div class="bio-hate-list">
+        <div class="bio-hate-item">
+          Я - ёбаная бездарность которая не умеет ничего (не считая физического труда и насилия, так как у меня 
+          не было выбора).
+        </div>
+        <div class="bio-hate-item">
+          Я - асоциальное хуйло, которое не может нормально разговаривать с людьми, потому что я словно ёбаный 
+          чат бот, который не умеет выбирать параметры стиля общения. Таким образом я спокойно могу спиздануть 
+          что-то, за что в ту же секунду могу получить по ёбалу, либо же стать настоящим убежищем (убежищем) для 
+          всех кто услышит.
+        </div>
+        <div class="bio-hate-item">
+          Я - бесперспективный биомусор, который ничего не делает, кроме как существует.
+        </div>
+        <div class="bio-hate-item">
+          Я - хуёвый друг, по крайней мере так обо мне отзывается большая часть людей которые так или иначе со 
+          мной общались и дружили.
+        </div>
+        <div class="bio-hate-item">
+          Я - умер в 2012м, да может звучать странно, но я стал дединсайдом ещё до нынешней тенденции, а ныне я 
+          просто кекаю и лишний раз тыкаю мамкиных zxc гулей, которые только научились пользоваться пенисом, 
+          прямо в говно.
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-section">
+      <h2 class="bio-title">Кто я?</h2>
+      <div class="bio-text">
+        Я - призрак в машине, баг в матрице, ошибка в системе. Программист по принуждению, 
+        философ по случайности, и мертвец по собственному выбору. Моя жизнь - это бесконечный 
+        цикл while(true), где каждая итерация приносит новые разочарования и баги в продакшене.
+      </div>
+      <div class="bio-quote">
+        "Я не выбирал путь программиста. Путь программиста выбрал меня. И теперь я пишу код, 
+        чтобы заглушить внутреннюю пустоту."
+      </div>
+    </div>
+
+    <div class="bio-section">
+      <h2 class="bio-title">Путь в никуда</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2012</div>
+            <div class="timeline-text">
+              Первая встреча с программированием. Hello World стал прощанием с нормальной жизнью.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2015</div>
+            <div class="timeline-text">
+              Решил поднять сервер-хост для майнкрафта дома. JS довёл до первого нервного срыва.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2017</div>
+            <div class="timeline-text">
+              Первый кэщ. Установил майнер на 50+ компов в школе, заработав 120$ за 2 недели.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2019</div>
+            <div class="timeline-text">
+              ВУЗ. Окончательно слился с компьютером и потерял связь с реальностью.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">Сейчас</div>
+            <div class="timeline-text">
+              Существую в виде набора функций и классов. Иногда пишу код, иногда код пишет меня.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-section skills-section">
+      <h2 class="bio-title">Навыки</h2>
+      
+      <div class="skill-category">Технические:</div>
+      <div class="skill-item">JavaScript (боль)</div>
+      <div class="skill-item">SQL (страдания)</div>
+      <div class="skill-item">CSS (мучения)</div>
+      <div class="skill-item">C# (конфликты)</div>
+      <div class="skill-item">Python (изоляция)</div>
+
+      <div class="skill-category mt-4">Софт-скиллы:</div>
+      <div class="skill-item">Агрессия</div>
+      <div class="skill-item">Прокрастинация</div>
+      <div class="skill-item">Сарказм</div>
+      <div class="skill-item">Цинизм</div>
+      <div class="skill-item">Экзистенциальный кризис</div>
+
+      <div class="skill-category mt-4">Достижения:</div>
+      <div class="skill-item">Выживание в опенспейсе</div>
+      <div class="skill-item">Дебаг по продакшену</div>
+      <div class="skill-item">Стрик из 2х недель без сна</div>
+      <div class="skill-item">Кофеиновая и никотиновая зависимость</div>
+    </div>
+  </div>
+</body>
+</html> 
