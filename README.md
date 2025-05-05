@@ -40,8 +40,8 @@ personal-webpage/
 ├── main.html          # Главная страница
 ├── projects.html      # Страница проектов
 ├── diary.html         # Дневник
-├── bio.html          # Биография
-└── contacts.html     # Контакты
+├── bio.html           # Биография
+└── contacts.html      # Контакты
 ```
 
 ## 🚀 Установка и запуск (на свой страх и риск)
