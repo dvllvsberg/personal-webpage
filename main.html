@@ -9,9 +9,9 @@
   <!-- Добавляем Bootstrap JavaScript и зависимости -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/icons8-reaper-flat-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/icons8-reaper-flat-32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon/icons8-reaper-flat-96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/icons8-reaper-flat-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/icons8-reaper-flat-32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon/icons8-reaper-flat-96.png">
   <style>
     body {
       background: url('https://www.transparenttextures.com/patterns/stardust.png'), black;
@@ -452,7 +452,7 @@
       background: #ff0000;
     }
 
-    .advertisement-left-placeholder {
+    .advertisement-section {
       background: #000;
       border: 2px solid #ff0000;
       padding: 30px;
@@ -462,6 +462,8 @@
       float: left;
       box-sizing: border-box;
       margin-right: 2%;
+      min-height: 400px;
+      overflow: hidden;
     }
     
     .advertisement-right-placeholder {
@@ -638,7 +640,7 @@
     
     /* Очистка float после секции рекламы */
     .advertisement-section::after,
-    .advertisement-left-placeholder::after {
+    .advertisement-right-placeholder::after {
       content: "";
       display: table;
       clear: both;
@@ -848,13 +850,22 @@
       </div>
     </div>
 
-    <div class="advertisement-left-placeholder">
+    <div class="advertisement-section">
       <h2 class="advertisement-title">Продаётся аккаунт Discord.</h2>
       
-      <img src="img/discord-profile.png" alt="Discord Profile Screenshot" class="advertisement-image">
+      <img src="./img/discord-profile.png" alt="Discord Profile Screenshot" class="advertisement-image" onerror="this.style.display='none'; console.log('Image failed to load:', this.src);">
+      <div id="discord-image-fallback" style="display: none; color: #ff0000; text-align: center; padding: 20px; border: 2px dashed #ff0000; margin: 20px 0;">
+        <strong>Изображение профиля Discord</strong><br>
+        <small>Файл: discord-profile.png</small>
+      </div>
       
       <div class="advertisement-price">
         Цена: <span class="price-crossed">1300₽</span>. 666₽ (-49%)
+      </div>
+      
+      <!-- Debug info -->
+      <div style="color: #ff0000; font-size: 12px; text-align: center; margin: 10px 0; border: 1px solid #ff0000; padding: 5px;">
+        DEBUG: Блок загружен
       </div>
       
       <div class="advertisement-grid">
@@ -916,7 +927,7 @@
     <div class="advertisement-right-placeholder">
       <h2 class="lol-advertisement-title">Слив аккаунта League of Legends (подробности в следующем блоке)</h2>
       
-      <img src="img/lol-profile.png" alt="League of Legends Profile" class="lol-advertisement-image">
+      <img src="./img/lol-profile.png" alt="League of Legends Profile" class="lol-advertisement-image" onerror="this.style.display='none'; console.log('Image failed to load:', this.src);">
       
       <div class="lol-advertisement-grid">
         <div class="lol-advertisement-item">
@@ -961,14 +972,14 @@
       
       <div class="lol-details-content">
         <p>• На аккаунте всего <span class="lol-details-highlight">52 скина (+2 не скрафченных)</span>: 
-          <span class="lol-details-highlight">2</span> <img src="img/mythic-skin.webp" alt="Mythic Skin" style="width: 20px; height: 20px; vertical-align: middle;">, 
-          <span class="lol-details-highlight">10</span> <img src="img/legendary-skin.webp" alt="Legendary Skin" style="width: 20px; height: 20px; vertical-align: middle;">, 
-          <span class="lol-details-highlight">18</span> <img src="img/epic-skin.webp" alt="Epic Skin" style="width: 20px; height: 20px; vertical-align: middle;">, 
-          <span class="lol-details-highlight">22</span> <img src="img/standart-skin.webp" alt="Standard Skin" style="width: 20px; height: 20px; vertical-align: middle;">.</p>
+          <span class="lol-details-highlight">2</span> <img src="./img/mythic-skin.webp" alt="Mythic Skin" style="width: 20px; height: 20px; vertical-align: middle;">, 
+          <span class="lol-details-highlight">10</span> <img src="./img/legendary-skin.webp" alt="Legendary Skin" style="width: 20px; height: 20px; vertical-align: middle;">, 
+          <span class="lol-details-highlight">18</span> <img src="./img/epic-skin.webp" alt="Epic Skin" style="width: 20px; height: 20px; vertical-align: middle;">, 
+          <span class="lol-details-highlight">22</span> <img src="./img/standart-skin.webp" alt="Standard Skin" style="width: 20px; height: 20px; vertical-align: middle;">.</p>
         
-        <p>• В аккаунт не было вложено ни копейки, поэтому <span class="lol-details-highlight"><img src="img/RP-icon.webp" alt="RP Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 0</span>.</p>
+        <p>• В аккаунт не было вложено ни копейки, поэтому <span class="lol-details-highlight"><img src="./img/RP-icon.webp" alt="RP Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 0</span>.</p>
         
-        <p>• Аккаунт валялся в хардстак <span class="lol-details-highlight"><img src="img/Season_2023_-_Bronze.webp" alt="Season 2023 Bronze" style="width: 45px; height: 40px; vertical-align: middle;"></span>, чисто по случайности получилось вывезти до <span class="lol-details-highlight"><img src="img/Season_2023_-_Gold.webp" alt="Season 2023 Bronze" style="width: 45px; height: 40px; vertical-align: middle;"></span>. Я бы и до <span class="lol-details-highlight"><img src="img/Season_2023_-_Platinum.webp" alt="Season 2023 Platinum" style="width: 45px; height: 40px; vertical-align: middle;"></span> дошёл, но мне лень (я уже заебался).</p>
+        <p>• Аккаунт валялся в хардстак <span class="lol-details-highlight"><img src="./img/Season_2023_-_Bronze.webp" alt="Season 2023 Bronze" style="width: 45px; height: 40px; vertical-align: middle;"></span>, чисто по случайности получилось вывезти до <span class="lol-details-highlight"><img src="./img/Season_2023_-_Gold.webp" alt="Season 2023 Gold" style="width: 45px; height: 40px; vertical-align: middle;"></span>. Я бы и до <span class="lol-details-highlight"><img src="./img/Season_2023_-_Platinum.webp" alt="Season 2023 Platinum" style="width: 45px; height: 40px; vertical-align: middle;"></span> дошёл, но мне лень (я уже заебался).</p>
         
         <p>• Никаких двухфакторок или жёстких привязок, даю почту и пароль а дальше что хочешь то и делай с этим мусором.</p>
         
@@ -1027,8 +1038,36 @@
       </p>
     </div>
   </div>
+  
+  <script>
+    // Обработка ошибок загрузки изображений
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        img.addEventListener('error', function() {
+          console.log('Image failed to load:', this.src);
+          this.style.display = 'none';
+          
+          // Показываем fallback для Discord изображения
+          if (this.src.includes('discord-profile.png')) {
+            const fallback = document.getElementById('discord-image-fallback');
+            if (fallback) fallback.style.display = 'block';
+          }
+        });
+      });
+      
+      // Проверяем, загрузились ли изображения
+      console.log('Page loaded, checking images...');
+      console.log('Discord image path:', document.querySelector('img[src*="discord-profile"]')?.src);
+      console.log('LoL image path:', document.querySelector('img[src*="lol-profile"]')?.src);
+      
+      // Проверяем CSS стили
+      const discordSection = document.querySelector('.advertisement-section');
+      if (discordSection) {
+        console.log('Discord section found:', discordSection);
+        console.log('Discord section styles:', window.getComputedStyle(discordSection));
+      }
+    });
+  </script>
 </body>
 </html> 
-
-
-
