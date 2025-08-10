@@ -863,11 +863,6 @@
         Цена: <span class="price-crossed">1300₽</span>. 666₽ (-49%)
       </div>
       
-      <!-- Debug info -->
-      <div style="color: #ff0000; font-size: 12px; text-align: center; margin: 10px 0; border: 1px solid #ff0000; padding: 5px;">
-        DEBUG: Блок загружен
-      </div>
-      
       <div class="advertisement-grid">
         <div class="advertisement-item">
           <div class="advertisement-value">In use</div>
@@ -1038,36 +1033,6 @@
       </p>
     </div>
   </div>
-  
-  <script>
-    // Обработка ошибок загрузки изображений
-    document.addEventListener('DOMContentLoaded', function() {
-      const images = document.querySelectorAll('img');
-      images.forEach(img => {
-        img.addEventListener('error', function() {
-          console.log('Image failed to load:', this.src);
-          this.style.display = 'none';
-          
-          // Показываем fallback для Discord изображения
-          if (this.src.includes('discord-profile.png')) {
-            const fallback = document.getElementById('discord-image-fallback');
-            if (fallback) fallback.style.display = 'block';
-          }
-        });
-      });
-      
-      // Проверяем, загрузились ли изображения
-      console.log('Page loaded, checking images...');
-      console.log('Discord image path:', document.querySelector('img[src*="discord-profile"]')?.src);
-      console.log('LoL image path:', document.querySelector('img[src*="lol-profile"]')?.src);
-      
-      // Проверяем CSS стили
-      const discordSection = document.querySelector('.advertisement-section');
-      if (discordSection) {
-        console.log('Discord section found:', discordSection);
-        console.log('Discord section styles:', window.getComputedStyle(discordSection));
-      }
-    });
-  </script>
 </body>
 </html> 
+
