@@ -117,7 +117,7 @@ body {
   color: #ccc;
   font-size: 12px;
   line-height: 1.2;
-  display: none !important;
+  display: block !important;
   visibility: visible;
 }
 
@@ -421,4 +421,5 @@ body {
   clear: both;
 }
   
+
 
