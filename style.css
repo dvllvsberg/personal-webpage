@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Courier New', monospace;
-    background-color: #000;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'), #000;
     color: #e60026;
     padding-top: 70px;
     min-height: 100vh;
@@ -222,29 +222,7 @@ body {
   opacity: 1;
 }
 
-/* Debug styles */
-.debug-info {
-  color: #ff0000;
-  font-size: 12px;
-  text-align: center;
-  margin: 10px 0;
-  border: 1px solid #ff0000;
-  padding: 5px;
-  background: rgba(255, 0, 0, 0.1);
-  display: block;
-  visibility: visible;
-}
-
-/* Fallback styles */
-.fallback-display {
-  display: none;
-  color: #ff0000;
-  text-align: center;
-  padding: 20px;
-  border: 2px dashed #ff0000;
-  margin: 20px 0;
-  background: rgba(255, 0, 0, 0.1);
-}
+/* Removed debug/fallback styles */
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -442,13 +420,197 @@ body {
   visibility: visible;
 }
 
-/* Clear float after advertisement sections */
-.advertisement-section::after,
-.advertisement-right-placeholder::after {
+/* Clear float after paired sections */
+.discord-section::after,
+.lol-section::after {
   content: "";
   display: table;
   clear: both;
 }
+
+/* Utility */
+.clearfix {
+  clear: both;
+}
+
+/* Navigation (moved from main.html) */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  border-bottom: 2px solid #ff0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.navbar-brand {
+  color: #ff0000 !important;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.navbar-brand::before {
+  content: "☠";
+  position: absolute;
+  left: 0;
+  animation: skullRotate 3s infinite linear;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px 15px;
+  margin: 0 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.nav-link::before {
+  content: "☠";
+  position: absolute;
+  left: -20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff0000 !important;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  left: -15px;
+}
+
+.navbar-toggler {
+  border-color: #ff0000 !important;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 0, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+@keyframes skullRotate {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.active-link {
+  color: #ff0000 !important;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
+  position: relative;
+}
+
+.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff0000;
+  box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+}
+
+/* General page elements (moved) */
+h1 {
+  color: rgb(66, 13, 13);
+  text-align: center;
+  text-shadow: 1px 1px 2px rgb(255, 0, 0);
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  border: 2px dashed lime;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.blink { animation: blink 1s step-start infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.crazy-text { color: #ff0000; font-weight: bold; }
+
+.content-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+.content-section h2 { color: #ff0000; margin-top: 0; }
+
+/* Intro helpers to replace inline styles */
+.intro-title { text-align: center; font-size: 24px; }
+.intro-banner { text-align: center; margin: 30px 0; }
+.huge-title { font-size: 72px; letter-spacing: 10px; display: inline-block; }
+.intro-quote { text-align: center; font-size: 18px; margin: 20px 0; }
+
+/* LoL details icons */
+.icon-20 { width: 20px; height: 20px; vertical-align: middle; }
+.rank-icon { width: 45px; height: 40px; vertical-align: middle; }
+
+/* Contacts */
+.contact-note { margin-top: 15px; line-height: 1.6; }
+.contact-highlight { display: block; margin-top: 10px; padding: 10px; background: rgba(255, 0, 0, 0.1); border-left: 3px solid #ff0000; }
+.contact-handle { color: #00ff00; font-family: monospace; }
+
+/* Bio */
+.bio-section { background: #000000; border: 2px solid #ff0000; padding: 20px; margin: 20px 0; font-family: "Courier New", monospace; }
+.bio-header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; border-bottom: 1px dashed #ff0000; padding-bottom: 20px; }
+.bio-avatar { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ff0000; }
+.bio-title { color: #ffffff; font-size: 24px; margin-bottom: 10px; }
+.bio-subtitle { color: #666666; font-style: italic; font-size: 14px; line-height: 1.4; }
+.bio-content { color: #ffffff; line-height: 1.6; }
+.bio-list { list-style-type: none; padding: 0; margin: 20px 0; }
+.bio-list li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+.bio-list li::before { content: "☠"; position: absolute; left: 0; color: #ff0000; }
+.bio-text { margin-bottom: 20px; }
+.glow-text { text-shadow: 0 0 5px #ff0000; }
+
+/* Marlboro */
+.marlboro-section { background: #000; border: 2px solid #cc0000; padding: 30px; margin: 20px 0; position: relative; }
+.marlboro-image { float: right; width: 200px; margin: 0 0 20px 20px; }
+.marlboro-quote { color: #fff; font-size: 18px; line-height: 1.6; margin-bottom: 20px; }
+.marlboro-list { list-style: none; padding: 0; margin: 20px 0; }
+.marlboro-list li { color: #fff; margin-bottom: 15px; padding-left: 25px; position: relative; }
+.marlboro-list li::before { content: "🚬"; position: absolute; left: 0; top: 2px; }
+.highlight-red { color: #ff0000; font-weight: bold; }
+
+/* Music */
+.music-section { background: linear-gradient(to bottom, #000000, #1a0000); border: 3px solid #800000; padding: 25px; margin: 20px 0; position: relative; }
+.music-image { float: left; width: 180px; margin: 0 20px 10px 0; border: 2px solid #800000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+.music-text { color: #fff; font-size: 17px; line-height: 1.7; text-shadow: 1px 1px 2px rgba(255, 0, 0, 0.2); }
+.music-paragraph { margin-bottom: 20px; }
+.music-highlight { color: #ff3333; font-weight: bold; }
+.music-signature { font-style: italic; color: #cc0000; text-align: right; margin-top: 30px; border-top: 1px dashed #800000; padding-top: 15px; }
+
+/* Outro */
+.outro-section { background: rgba(0, 0, 0, 0.8); border: 1px solid #333; padding: 25px; margin: 20px 0; position: relative; font-style: italic; }
+.outro-section::before { content: "..."; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); color: #ff0000; font-size: 40px; letter-spacing: 5px; }
+.outro-text { color: #999; font-size: 16px; line-height: 1.8; text-align: center; }
+.outro-highlight { color: #ff0000; font-weight: normal; text-shadow: 0 0 5px rgba(255, 0, 0, 0.3); }
+@keyframes fadeText { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+.fade-text { animation: fadeText 4s infinite; }
+
+/* Demons/Gallery */
+.demons-section { background: #000; border: 2px solid #660000; padding: 30px; margin: 20px 0; }
+.demons-title { color: #ff0000; font-size: 28px; text-align: center; margin-bottom: 20px; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+.demons-text { color: #fff; font-size: 20px; text-align: center; margin-bottom: 30px; font-style: italic; }
+.gallery-container { display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 20px 0; gap: 15px; }
+.gallery-image { width: 120px; height: 120px; object-fit: cover; border: 2px solid #660000; border-radius: 5px; transition: all 0.3s ease; mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%); }
+.gallery-image:hover { transform: scale(1.1); border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+.gallery-container::-webkit-scrollbar { height: 8px; }
+.gallery-container::-webkit-scrollbar-track { background: #1a0000; border-radius: 4px; }
+.gallery-container::-webkit-scrollbar-thumb { background: #660000; border-radius: 4px; }
+.gallery-container::-webkit-scrollbar-thumb:hover { background: #ff0000; }
   
 
 
