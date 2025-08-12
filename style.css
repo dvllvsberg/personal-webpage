@@ -49,7 +49,7 @@ body {
 
 .lol-section {
   width: 48%;
-  float: left;
+  float: right;
   box-sizing: border-box;
   min-height: 400px;
   background: #000;
@@ -259,6 +259,35 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
   
+  .lol-advertisement-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive stacking for Discord/LoL pair */
+@media (max-width: 768px) {
+  .discord-section,
+  .lol-section {
+    width: 100%;
+    float: none;
+    margin: 10px 0;
+  }
+  /* Discord grid: 2 колонки на планшетах/малых экранах */
+  .discord-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .discord-image {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+}
+
+/* Очень узкие экраны */
+@media (max-width: 480px) {
+  .discord-grid {
+    grid-template-columns: 1fr;
+  }
   .lol-advertisement-grid {
     grid-template-columns: 1fr;
   }
