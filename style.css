@@ -30,7 +30,7 @@ body {
   }
 
 /* Advertisement Styles */
-.advertisement-section {
+.discord-section {
   background: #000;
   border: 2px solid #ff0000;
   padding: 30px;
@@ -47,7 +47,7 @@ body {
   opacity: 1;
 }
 
-.advertisement-right-placeholder {
+.discord-right-placeholder {
   width: 48%;
   float: left;
   box-sizing: border-box;
@@ -63,7 +63,7 @@ body {
   opacity: 1;
 }
 
-.advertisement-title {
+.discord-title {
   color: #ff0000;
   font-size: 30px;
   text-align: center;
@@ -73,7 +73,7 @@ body {
   visibility: visible;
 }
 
-.advertisement-subtitle {
+.discord-subtitle {
   color: #fff;
   font-size: 18px;
   text-align: center;
@@ -83,7 +83,7 @@ body {
   visibility: visible;
 }
 
-.advertisement-grid {
+.discord-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -92,7 +92,7 @@ body {
   opacity: 1;
 }
 
-.advertisement-item {
+.discord-item {
   text-align: center;
   background: rgba(255, 0, 0, 0.1);
   border: 1px solid #ff0000;
@@ -103,7 +103,7 @@ body {
   opacity: 1;
 }
 
-.advertisement-value {
+.discord-value {
   color: #ff0000;
   font-size: 15px;
   font-weight: bold;
@@ -113,7 +113,7 @@ body {
   visibility: visible;
 }
 
-.advertisement-label {
+.discord-label {
   color: #ccc;
   font-size: 12px;
   line-height: 1.2;
@@ -121,7 +121,7 @@ body {
   visibility: visible;
 }
 
-.advertisement-image {
+.discord-image {
   display: block;
   width: 200px;
   margin: 0 auto 20px auto;
@@ -132,7 +132,7 @@ body {
   opacity: 1;
 }
 
-.advertisement-price {
+.discord-price {
   color: #fff;
   font-size: 18px;
   text-align: center;
@@ -156,7 +156,7 @@ body {
   text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
-.advertisement-highlight {
+.discord-highlight {
   color: #ff0000;
   font-weight: bold;
 }
@@ -421,5 +421,6 @@ body {
   clear: both;
 }
   
+
 
 
