@@ -23,7 +23,7 @@
 - 💀 Уникальный готический дизайн
 - 📱 Адаптивная верстка
 - ⚡ Быстрая загрузка
-- 🎵 Звуковое сопровождение (пока не реализовано)
+- 🎵 Звуковое сопровождение(пока не реализовано)
 
 ## 🛠 Технологии
 
@@ -40,15 +40,15 @@ personal-webpage/
 ├── main.html          # Главная страница
 ├── projects.html      # Страница проектов
 ├── diary.html         # Дневник
-├── bio.html           # Биография
-└── contacts.html      # Контакты
+├── bio.html          # Биография
+└── contacts.html     # Контакты
 ```
 
 ## 🚀 Установка и запуск (на свой страх и риск)
 
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/dvllvsberg/personal-webpage.git
+git clone https://github.com/yourusername/personal-webpage.git
 ```
 
 2. Откройте `index.html` в вашем браузере
@@ -65,5 +65,5 @@ MIT License - см. файл [LICENSE](LICENSE) для подробностей
 ---
 
 <div align="center">
-  <sub>Built with 💀 by BAREL'EF</sub>
+  <sub>Built with 💀 by IAYSISDEAD</sub>
 </div>
