@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <title>Дневник</title>
   <meta charset="UTF-8" />
@@ -18,7 +18,6 @@
       padding-top: 70px;
     }
 
-    /* Неоновые стили для навигации */
     .navbar {
       background-color: rgba(0, 0, 0, 0.95) !important;
       border-bottom: 2px solid #ff0000;
@@ -28,9 +27,7 @@
     .navbar-brand {
       color: #ff0000 !important;
       font-weight: bold;
-      text-shadow: 0 0 5px #ff0000,
-                   0 0 10px #ff0000,
-                   0 0 20px #ff0000;
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
       font-family: 'Courier New', monospace;
       letter-spacing: 2px;
       position: relative;
@@ -55,24 +52,9 @@
       text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
     }
 
-    .nav-link::before {
-      content: "☠";
-      position: absolute;
-      left: -20px;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
     .nav-link:hover {
       color: #ff0000 !important;
-      text-shadow: 0 0 5px #ff0000,
-                   0 0 10px #ff0000,
-                   0 0 20px #ff0000;
-    }
-
-    .nav-link:hover::before {
-      opacity: 1;
-      left: -15px;
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
     }
 
     .navbar-toggler {
@@ -93,9 +75,7 @@
 
     .active-link {
       color: #ff0000 !important;
-      text-shadow: 0 0 5px #ff0000,
-                   0 0 10px #ff0000,
-                   0 0 20px #ff0000;
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
       position: relative;
     }
 
@@ -107,8 +87,134 @@
       width: 100%;
       height: 2px;
       background: #ff0000;
-      box-shadow: 0 0 5px #ff0000,
-                  0 0 10px #ff0000;
+      box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+    }
+
+    h1 {
+      color: rgb(66, 13, 13);
+      text-align: center;
+      text-shadow: 1px 1px 2px rgb(255, 0, 0);
+      margin-bottom: 10px;
+    }
+
+    .diary-subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 0.9em;
+      margin-bottom: 30px;
+    }
+
+    #auth-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .auth-status {
+      color: #ff6666;
+      font-size: 0.9em;
+    }
+
+    #login-form, #composer {
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid #ff0000;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+    }
+
+    #login-form[hidden], #composer[hidden] {
+      display: none !important;
+    }
+
+    .diary-label {
+      display: block;
+      color: #ff0000;
+      margin-bottom: 6px;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .diary-input,
+    .diary-textarea {
+      width: 100%;
+      background: #111;
+      border: 1px solid #660000;
+      color: #fff;
+      padding: 10px 12px;
+      font-family: inherit;
+      margin-bottom: 12px;
+      border-radius: 0;
+    }
+
+    .diary-input:focus,
+    .diary-textarea:focus {
+      outline: none;
+      border-color: #ff0000;
+      box-shadow: 0 0 8px rgba(255, 0, 0, 0.35);
+    }
+
+    .diary-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .diary-btn {
+      background: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-family: inherit;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s ease;
+    }
+
+    .diary-btn:hover {
+      background: #cc0000;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+
+    .diary-btn-small {
+      padding: 6px 14px;
+      font-size: 0.85em;
+    }
+
+    .diary-btn-ghost {
+      background: transparent;
+      border: 1px solid #ff0000;
+      color: #ff0000;
+    }
+
+    .diary-btn-ghost:hover {
+      background: rgba(255, 0, 0, 0.15);
+    }
+
+    .diary-btn-danger {
+      background: transparent;
+      border: 1px solid #660000;
+      color: #ff4444;
+    }
+
+    .diary-btn-danger:hover {
+      background: rgba(255, 0, 0, 0.2);
+    }
+
+    .diary-error, .diary-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #ff6666;
+      border: 1px dashed #660000;
+    }
+
+    #loading {
+      text-align: center;
+      color: #888;
+      padding: 30px;
     }
 
     .diary-entry {
@@ -125,13 +231,26 @@
       transform: translateY(-2px);
     }
 
+    .diary-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #ff0000;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .diary-date {
       color: #ff0000;
       font-size: 0.9em;
-      border-bottom: 1px dashed #ff0000;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
       text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .diary-author {
+      color: #888;
+      font-size: 0.85em;
     }
 
     .diary-content {
@@ -147,16 +266,141 @@
       text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
     }
 
-    h1 {
-      color: rgb(66, 13, 13);
-      text-align: center;
-      text-shadow: 1px 1px 2px rgb(255, 0, 0);
-      margin-bottom: 30px;
+    .reactions-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #330000;
+    }
+
+    .reaction-btn {
+      background: #111;
+      border: 1px solid #660000;
+      color: #fff;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .reaction-btn:hover,
+    .reaction-btn.active {
+      border-color: #ff0000;
+      color: #ff0000;
+      box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+    }
+
+    .comments-section {
+      margin-top: 14px;
+    }
+
+    .comments-toggle {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9em;
+      padding: 0;
+      text-decoration: underline;
+    }
+
+    .comments-toggle:hover {
+      color: #ff0000;
+    }
+
+    .comments-panel {
+      margin-top: 12px;
+      padding: 12px;
+      background: rgba(20, 0, 0, 0.5);
+      border: 1px solid #330000;
+    }
+
+    .comments-panel[hidden] {
+      display: none !important;
+    }
+
+    .comment-item {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #330000;
+    }
+
+    .comment-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .comment-author {
+      color: #ff6666;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .comment-date {
+      color: #555;
+      font-size: 0.8em;
+    }
+
+    .comment-text {
+      margin-top: 6px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    .comment-empty {
+      color: #555;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .comment-form {
+      margin-top: 14px;
+    }
+
+    .comment-nick,
+    .comment-input {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #440000;
+      color: #fff;
+      padding: 8px 10px;
+      font-family: inherit;
+      margin-bottom: 8px;
+    }
+
+    .author-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed #330000;
+    }
+
+    .edit-form {
+      margin-bottom: 10px;
+    }
+
+    .edit-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .form-error {
+      color: #ff4444;
+      font-size: 0.9em;
+      margin-top: 8px;
+    }
+
+    .form-error[hidden] {
+      display: none !important;
     }
   </style>
 </head>
 <body>
-  <!-- Навигационное меню -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="main.html">IAYSISDEAD</a>
@@ -165,61 +409,48 @@
       </button>
       <div class="collapse navbar-collapse" id="darkNavbar">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="main.html">Главная</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active-link" href="diary.html">Дневник</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="projects.html">Проекты</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bio.html">Биография</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacts.html">Контакты</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="main.html">Главная</a></li>
+          <li class="nav-item"><a class="nav-link active-link" href="diary.html">Дневник</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Проекты</a></li>
+          <li class="nav-item"><a class="nav-link" href="bio.html">Биография</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="container mt-5">
+  <div class="container mt-5" style="max-width: 720px;">
     <h1>Дневник Отчаявшегося Идиота</h1>
+    <p class="diary-subtitle">мемуарчики в реальном времени · читать могут все · пишет только автор</p>
 
-    <div class="diary-entry">
-      <div class="diary-date">23.03.2024</div>
-      <div class="diary-content">
-        Сегодня я снова проснулся. Какая досада. Очередной день в этом бренном существовании. 
-        Единственное, что радует - это возможность писать код. Хотя бы в этом цифровом мире 
-        я могу создавать что-то, что имеет смысл. Или хотя бы делать вид, что имеет.
-      </div>
-      <div class="diary-mood">Настроение: void</div>
+    <div id="auth-bar"></div>
+
+    <form id="login-form" hidden>
+      <label class="diary-label" for="login-email">Email автора</label>
+      <input class="diary-input" type="email" id="login-email" required autocomplete="username">
+      <label class="diary-label" for="login-password">Пароль</label>
+      <input class="diary-input" type="password" id="login-password" required autocomplete="current-password">
+      <button type="submit" class="diary-btn">Войти</button>
+      <p id="login-error" class="form-error" hidden></p>
+    </form>
+
+    <div id="composer" hidden>
+      <form id="publish-form">
+        <label class="diary-label" for="post-content">Что у тебя на душе?</label>
+        <textarea class="diary-textarea" id="post-content" placeholder="Выплесни мысль в бездну..." required></textarea>
+        <label class="diary-label" for="post-mood">Настроение (необязательно)</label>
+        <input class="diary-input" type="text" id="post-mood" placeholder="void, 404, NullPointerException...">
+        <button type="submit" class="diary-btn">☠ Опубликовать</button>
+        <p id="publish-error" class="form-error" hidden></p>
+      </form>
     </div>
 
-    <div class="diary-entry">
-      <div class="diary-date">22.03.2024</div>
-      <div class="diary-content">
-        Пытался починить баг в продакшене. Баг починил меня. Теперь я - баг. 
-        В системе. В матрице. В жизни. 
-        <br><br>
-        Выпил три банки энергетика. Код начал писать сам себя. 
-        Надеюсь, он не создаст skynet.
-      </div>
-      <div class="diary-mood">Настроение: NullPointerException</div>
-    </div>
-
-    <div class="diary-entry">
-      <div class="diary-date">21.03.2024</div>
-      <div class="diary-content">
-        Сегодня решил обновить свой сайт. Добавил немного неоновых эффектов и китайских иероглифов. 
-        Потому что могу. И потому что это выглядит достаточно депрессивно.
-        <br><br>
-        Кажется, я начинаю понимать дзен программирования. Или это просто недосып?
-      </div>
-      <div class="diary-mood">Настроение: 404 Not Found</div>
-    </div>
+    <div id="loading">Загрузка ленты...</div>
+    <div id="feed"></div>
   </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/diary.js"></script>
 </body>
-</html> 
+</html>
