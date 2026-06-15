@@ -1,0 +1,140 @@
+/* Agreement — legacy mode (2000s personal page aesthetic) */
+
+.legacy-shell {
+  display: none;
+}
+
+html.legacy-mode .legacy-shell {
+  display: block;
+}
+
+html.legacy-mode .proto-shell {
+  display: none !important;
+}
+
+html.legacy-mode body,
+html.legacy-mode {
+  cursor: auto;
+}
+
+.legacy-shell {
+  min-height: 100vh;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png'), black;
+  color: #fff;
+  font-family: "Courier New", monospace;
+  padding-bottom: 2rem;
+}
+
+.legacy-shell h1 {
+  color: cyan;
+  text-align: center;
+  text-shadow: 1px 1px 2px #0ff;
+  margin: 0;
+  padding: 0.75rem 0;
+}
+
+.legacy-main {
+  width: min(90%, 720px);
+  margin: 0 auto;
+  border: 2px dashed lime;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.legacy-main p {
+  line-height: 1.6;
+}
+
+.legacy-main a {
+  color: yellow;
+  text-decoration: underline;
+}
+
+.legacy-main img {
+  display: block;
+  width: 200px;
+  height: auto;
+  margin: 1rem auto;
+}
+
+.legacy-blink {
+  animation: legacy-blink 1s step-start infinite;
+}
+
+.legacy-crazy {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+@keyframes legacy-blink {
+  50% { opacity: 0; }
+}
+
+.legacy-form {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.legacy-checkbox-row {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.legacy-checkbox-row label {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.legacy-btn {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Courier New", monospace;
+}
+
+.legacy-btn:hover {
+  background-color: #cc0000;
+}
+
+.legacy-underline {
+  text-decoration: underline;
+}
+
+.legacy-red-pulse {
+  color: #ff0000;
+  text-decoration: underline;
+  animation: legacy-pulse 3s ease-in-out infinite;
+}
+
+@keyframes legacy-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.legacy-error {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.legacy-error[hidden] {
+  display: none !important;
+}
+
+/* Settings gear — visible in legacy too */
+html.legacy-mode .proto-hud-settings {
+  border-top-color: lime;
+  border-left-color: lime;
+  color: cyan;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.35);
+}
+
+html.legacy-mode .proto-hud-settings:hover,
+html.legacy-mode .proto-hud-settings:focus {
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.55);
+}

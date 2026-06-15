@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>QUARANTINE PROTOCOL — Preview</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/icons8-reaper-flat-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/icons8-reaper-flat-32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/icons8-reaper-flat-96.png">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/prototype.css">
+</head>
+<body class="proto-theme">
+  <div class="proto-bg" aria-hidden="true">
+    <div class="proto-bg-slides" aria-hidden="true"></div>
+  </div>
+  <canvas id="proto-particles" class="proto-particles" aria-hidden="true"></canvas>
+  <div class="proto-scanlines" aria-hidden="true"></div>
+  <div class="proto-vignette" aria-hidden="true"></div>
+  <div class="proto-scroll-fade proto-scroll-fade-top" aria-hidden="true"></div>
+  <div class="proto-scroll-fade proto-scroll-fade-left" aria-hidden="true"></div>
+
+  <aside class="proto-chrome proto-chrome-left" aria-hidden="true">
+    <div class="proto-bracket proto-bracket-tl"></div>
+    <div class="proto-bracket proto-bracket-bl"></div>
+    <div class="proto-chrome-stack">
+      <div class="proto-hatch"></div>
+      <div class="proto-ruler">
+        <div class="proto-ruler-axis"></div>
+        <div class="proto-ruler-ticks"></div>
+        <div class="proto-ruler-scroll">
+          <div class="proto-ruler-numbers">
+            <span class="proto-brute-ruler" data-base="254">254</span><span class="proto-brute-ruler" data-base="251">251</span><span class="proto-brute-ruler" data-base="248">248</span><span class="proto-brute-ruler" data-base="245">245</span><span class="proto-brute-ruler" data-base="242">242</span>
+            <span class="proto-brute-ruler" data-base="239">239</span><span class="proto-brute-ruler" data-base="236">236</span><span class="proto-brute-ruler" data-base="233">233</span><span class="proto-brute-ruler" data-base="230">230</span><span class="proto-brute-ruler" data-base="227">227</span>
+            <span class="proto-brute-ruler" data-base="224">224</span><span class="proto-brute-ruler" data-base="221">221</span><span class="proto-brute-ruler" data-base="218">218</span><span class="proto-brute-ruler" data-base="215">215</span><span class="proto-brute-ruler" data-base="212">212</span>
+            <span class="proto-brute-ruler" data-base="209">209</span><span class="proto-brute-ruler" data-base="206">206</span><span class="proto-brute-ruler" data-base="203">203</span><span class="proto-brute-ruler" data-base="200">200</span><span class="proto-brute-ruler" data-base="197">197</span>
+            <span class="proto-brute-ruler" data-base="194">194</span><span class="proto-brute-ruler" data-base="191">191</span><span class="proto-brute-ruler" data-base="188">188</span><span class="proto-brute-ruler" data-base="185">185</span><span class="proto-brute-ruler" data-base="182">182</span>
+            <span class="proto-brute-ruler" data-base="179">179</span><span class="proto-brute-ruler" data-base="176">176</span><span class="proto-brute-ruler" data-base="173">173</span><span class="proto-brute-ruler" data-base="170">170</span><span class="proto-brute-ruler" data-base="167">167</span>
+            <span class="proto-brute-ruler" data-base="254">254</span><span class="proto-brute-ruler" data-base="251">251</span><span class="proto-brute-ruler" data-base="248">248</span><span class="proto-brute-ruler" data-base="245">245</span><span class="proto-brute-ruler" data-base="242">242</span>
+            <span class="proto-brute-ruler" data-base="239">239</span><span class="proto-brute-ruler" data-base="236">236</span><span class="proto-brute-ruler" data-base="233">233</span><span class="proto-brute-ruler" data-base="230">230</span><span class="proto-brute-ruler" data-base="227">227</span>
+          </div>
+        </div>
+      </div>
+      <div class="proto-side-data">
+        <div class="proto-glitch-bar" style="--w:92%"></div>
+        <div class="proto-glitch-bar" style="--w:67%"></div>
+        <div class="proto-glitch-bar" style="--w:84%"></div>
+        <div class="proto-glitch-bar" style="--w:45%"></div>
+        <div class="proto-glitch-bar" style="--w:78%"></div>
+        <div class="proto-glitch-bar" style="--w:55%"></div>
+        <div class="proto-glitch-bar" style="--w:38%"></div>
+        <div class="proto-glitch-bar" style="--w:71%"></div>
+      </div>
+    </div>
+    <div class="proto-readout">
+      <span class="proto-brute-digit">0</span>
+      <span class="proto-brute-digit">0</span>
+      <span class="proto-brute-digit">3</span>
+      <span class="proto-brute-digit">3</span>
+    </div>
+  </aside>
+
+  <aside class="proto-cmdline" aria-hidden="true">
+    <div class="proto-cmdline-inner" id="proto-cmdline-inner"></div>
+  </aside>
+
+  <aside class="proto-chrome proto-chrome-right" aria-hidden="true">
+    <div class="proto-bracket proto-bracket-tr"></div>
+    <div class="proto-bracket proto-bracket-br"></div>
+    <div class="proto-chrome-stack proto-chrome-stack-right">
+      <div class="proto-side-data proto-side-data-blur">
+        <div class="proto-glitch-block"></div>
+        <div class="proto-glitch-block"></div>
+        <div class="proto-glitch-block"></div>
+        <div class="proto-glitch-block"></div>
+        <div class="proto-glitch-block"></div>
+      </div>
+      <div class="proto-filmstrip">
+        <div class="proto-filmstrip-inner"></div>
+      </div>
+      <div class="proto-edge-line"></div>
+    </div>
+    <div class="proto-readout proto-readout-right">◄ scope</div>
+  </aside>
+
+  <div class="proto-preview-badge">prototype ui preview</div>
+  <button type="button" class="proto-hud-settings proto-settings-gear" id="proto-settings-open" title="Настройки" aria-label="Настройки">
+    <span class="proto-gear-icon" aria-hidden="true">⚙</span>
+  </button>
+  <div id="proto-bgm-player" class="proto-bgm-player" aria-hidden="true"></div>
+
+  <div class="proto-modal-backdrop" id="proto-settings-modal" hidden>
+    <div class="proto-modal" role="dialog" aria-labelledby="proto-modal-title" aria-modal="true">
+      <div class="proto-modal-frame">
+        <div class="proto-modal-title" id="proto-modal-title">// SYSTEM CONFIG</div>
+        <p class="proto-modal-prompt">ПАРАМЕТРЫ СТРАНИЦЫ</p>
+        <div class="proto-modal-body">
+          <label class="proto-modal-row">
+            <input type="checkbox" id="proto-bgm-check">
+            <span class="proto-modal-row-label">BGM ON / OFF</span>
+          </label>
+          <label class="proto-modal-row proto-modal-row-volume">
+            <span class="proto-modal-row-label">VOLUME</span>
+            <input type="range" id="proto-bgm-volume" min="0" max="100" value="35">
+            <span class="proto-modal-vol-readout" id="proto-bgm-vol-readout">35</span>
+          </label>
+        </div>
+        <div class="proto-modal-actions">
+          <button type="button" class="proto-modal-btn proto-modal-btn-save" id="proto-settings-save">СОХРАНИТЬ И ВЫЙТИ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proto-modal-backdrop proto-error-modal" id="proto-error-modal" hidden>
+    <div class="proto-modal" role="alertdialog" aria-modal="true" aria-labelledby="error-message">
+      <div class="proto-modal-frame">
+        <p id="error-message" class="proto-error">
+          Ты в глаза долбишься? Соглашение принимаешь или идёшь нахуй.
+        </p>
+        <div class="proto-modal-actions">
+          <button type="button" class="proto-modal-btn proto-modal-btn-save" id="proto-error-ok">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proto-corner proto-corner-tl">blackwatch // sector 7</div>
+  <div class="proto-corner proto-corner-br">infection detected</div>
+
+  <div class="proto-page">
+    <header class="proto-header">
+      <div class="proto-header-label">select protocol</div>
+      <div class="proto-header-title">
+        НУ ПРИВЕТ, ЛЮБОПЫТНОЕ ХУЙЛО, ВЫВОРАЧИВАЙ СВОИ КИШКИ И УБЕРИ ХАВКУ ПОДАЛЬШЕ.<br>
+        *А ЛУЧШЕ ВСЕГО ЗАХВАТИ РВОТНЫЙ ПАКЕТИК*
+      </div>
+    </header>
+
+    <section class="proto-panel">
+      <div class="proto-panel-label">briefing</div>
+      <p>
+        <b>Одно я тебе скажу, зря ты сюда зашел.</b>
+        Автор данной страницы является
+        <span class="proto-blink">НЕВМЕНЯЕМЫМ</span> и
+        <span class="proto-blink">КОНЧЕННЫМ</span> человеком.
+        Публикации и истории из раздела «мой депрессивный дневничок» находятся в
+        <a href="https://t.me/iaysisdead" target="_blank">Telegram</a>.
+      </p>
+
+      <div class="proto-skull-wrap">
+        <div class="proto-skull-frame">
+          <img src="https://media.giphy.com/media/jJccBaBcpYEfHy9e4p/giphy.gif" alt="Skull" />
+        </div>
+      </div>
+
+      <div class="proto-divider"></div>
+
+      <div class="proto-panel-label">accept terms</div>
+
+      <div class="proto-option">
+        <input type="checkbox" id="agreement" name="agreement">
+        <label for="agreement">
+          Я тупой долбоёб, подтверждаю, что мне исполнилось 0 лет, у меня не всё в порядке с мозгами,
+          и я готов пройти далее. К контенту который мне предстоит лицезреть,
+          <span class="proto-underline">претензий не имею</span>, и
+          <span class="proto-pulse-text">своё липовое мнение я никому не буду генерировать/высказывать</span>.
+        </label>
+      </div>
+
+      <div class="proto-actions">
+        <button type="button" onclick="checkAgreement()" class="proto-btn">
+          <span>proceed</span>
+        </button>
+      </div>
+    </section>
+
+    <p style="text-align:center; font-size:0.65rem; letter-spacing:0.15em; opacity:0.4; margin-top:2rem;">
+      <a href="agreement.html" style="color:inherit; border:none;">← продакшн-версия</a>
+    </p>
+  </div>
+
+  <script src="js/prototype-chrome.js"></script>
+  <script src="js/prototype-particles.js"></script>
+  <script src="js/prototype-bgm.js"></script>
+  <script>
+    const errorModal = document.getElementById('proto-error-modal');
+    const errorOkBtn = document.getElementById('proto-error-ok');
+    const agreementCheckbox = document.getElementById('agreement');
+
+    function openErrorModal() {
+      if (!errorModal) return;
+      const errorText = document.getElementById('error-message');
+      if (errorText) {
+        errorText.style.animation = 'none';
+        void errorText.offsetWidth;
+        errorText.style.animation = '';
+      }
+      errorModal.hidden = false;
+      requestAnimationFrame(() => errorModal.classList.add('proto-modal-visible'));
+      document.body.classList.add('proto-modal-open');
+      if (errorOkBtn) errorOkBtn.focus();
+    }
+
+    function closeErrorModal() {
+      if (!errorModal) return;
+      errorModal.classList.remove('proto-modal-visible');
+      document.body.classList.remove('proto-modal-open');
+      setTimeout(() => {
+        errorModal.hidden = true;
+      }, 220);
+    }
+
+    function checkAgreement() {
+      if (!agreementCheckbox.checked) {
+        openErrorModal();
+        return;
+      }
+      window.location.href = 'main.html';
+    }
+
+    if (errorOkBtn) errorOkBtn.addEventListener('click', closeErrorModal);
+    if (errorModal) {
+      errorModal.addEventListener('click', (e) => {
+        if (e.target === errorModal) closeErrorModal();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && errorModal && !errorModal.hidden) closeErrorModal();
+    });
+    if (agreementCheckbox) {
+      agreementCheckbox.addEventListener('change', () => agreementCheckbox.blur());
+    }
+  </script>
+</body>
+</html>
