@@ -1,0 +1,27 @@
+
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Check Supabase database
+        env:
+          SUPABASE_URL: https://iarwarggqhkaqovjfgku.supabase.co
+          SUPABASE_KEY: sb_publishable_IwoGdTV_MJb7wbzQZqRFpw_ZN6Bc87z
+        run: |
+          curl --fail-with-body --silent --show-error \
+            --max-time 30 \
+            "${SUPABASE_URL}/rest/v1/posts?select=id&limit=1" \
+            -H "apikey: ${sb_publishable_IwoGdTV_MJb7wbzQZqRFpw_ZN6Bc87z}" \
+            -H "Accept: application/json"
