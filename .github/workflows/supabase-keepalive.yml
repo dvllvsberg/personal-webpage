@@ -23,5 +23,5 @@ jobs:
           curl --fail-with-body --silent --show-error \
             --max-time 30 \
             "${SUPABASE_URL}/rest/v1/posts?select=id&limit=1" \
-            -H "apikey: ${sb_publishable_IwoGdTV_MJb7wbzQZqRFpw_ZN6Bc87z}" \
+            -H "apikey: ${SUPABASE_KEY}" \
             -H "Accept: application/json"
